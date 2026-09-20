@@ -223,6 +223,9 @@ def view_single_protein(
     else:
         raise ValueError("Either pdb_id and chain_id, uniprot_id, or cif_file_path must be provided.")
 
+    if pdb_struct is None:
+        raise ValueError(f"No AlphaFold structure available for UniProt ID {uniprot_id!r}")
+
     pdb_data = structure_to_seq(pdb_struct)
     residues = pdb_struct.get_residues()
 
